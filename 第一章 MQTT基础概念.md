@@ -7,8 +7,8 @@
 ##  1.1 MQTT 协议的通信模型
 就像我们在之前提到的，MQTT 的通信是通过发布/订阅的方式来实现的，消息的发布方和订阅方通过这种方式来进行解耦，它们没有直接地连接，它们需要一个中间方。在 MQTT 里面我们称之为 Broker，用来进行消息的存储和转发。一次典型的 MQTT 消息通信流程如下所示：
 
-public发布方----->Broker----->Subscribler1 订阅1、Subscribler2 订阅2.....Subscriblern 订阅n
-
+public发布方----->Broker----->Subscribler1 订阅1、Subscribler2 订阅2.....Subscriblern 订阅n  
+![Broker发布和Subscriber主题](https://github.com/caozhaocao/MQTT1/blob/master/img/01.jpg)  
 1.发布方将消息发送到 Broker；  
 2.Broker 接收到消息以后，检查下都有哪些订阅方订阅了此类消息，然后将消息发送到这些订阅方；  
 3.订阅方从 Broker 获取该消息。
