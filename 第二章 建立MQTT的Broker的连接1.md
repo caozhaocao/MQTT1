@@ -62,7 +62,7 @@ Session Present Flag 这个特性是在 MQTT 3.1.1 版本中新加入的，之�
 
 连接返回码（Connect Return code）：用于标识 Client 是 Broker 的连接是否建立成功，连接返回码有以下一些值：
 Return Code | 连接状态
------ | ----
+:----- | ----:
 0 | 连接已建立
 1 | 连接被拒绝，不允许的协议版本
 2 | 连接被拒绝，Client Identifier 被拒绝
