@@ -61,13 +61,14 @@ CONNACK 数据包的可变头中，含有以下信息.
 Session Present Flag 这个特性是在 MQTT 3.1.1 版本中新加入的，之前的版本中并没有这个标识.
 
 连接返回码（Connect Return code）：用于标识 Client 是 Broker 的连接是否建立成功，连接返回码有以下一些值：
-Return Code	连接状态
-0	连接已建立
-1	连接被拒绝，不允许的协议版本
-2	连接被拒绝，Client Identifier 被拒绝
-3	连接被拒绝，服务器不可用
-4	连接被拒绝，错误的用户名或密码
-5	连接被拒绝，未授权
+Return Code | 连接状态
+----- | ----
+0 | 连接已建立
+1 | 连接被拒绝，不允许的协议版本
+2 | 连接被拒绝，Client Identifier 被拒绝
+3 | 连接被拒绝，服务器不可用
+4 | 连接被拒绝，错误的用户名或密码
+5 | 连接被拒绝，未授权
 
 这里重点讲一下 Return Code 4 和 5.Return Code 4 在 MQTT 协议中的含义是 Username 和 Password 的格式不正确，但是在大部分的 Broker 实现中，在使用错误的用户名密码时，得到的返回码也是 4.所以这里我们认为 4 就是代表错误的用户名或密码.Return Code 5 一般在 Broker 不使用用户名和密码而使用 IP 地址或者 Client Identifier 进行验证的时候使用，来标识 Client 没有通过验证.
 注意： Return Code 2 代表的是 Client Identifier 格式不规范，比如长度超过 23 个字符，包含了不允许的字符等（部分 Broker 的实现在协议标准上做了扩展，比如允许超过 23 个字符的 Client Identifer 等）.
