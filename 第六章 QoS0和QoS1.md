@@ -2,7 +2,7 @@ QoS全称为Quantity of Service，CONNECT、PUBLISH、SUBSCRIBE中都有QoS的�
 那么MQTT提供的QoS是什么呢？本节课核心内容： 1.MQTT中的QoS等级；2.QoS0 ；3.QoS1；4.代码实践。
 
 
-6.1 MQTT中的QoS等级
+## 6.1 MQTT中的QoS等级
 
 作为最初用在网络带宽窄、信号不稳定的环境下传输数据的协议，MQTT设计了一套保证信息稳定传输的机制，包括信息应答。存储
 和重传。在这套机制下，提供了三种不同层次QoS：
@@ -26,7 +26,7 @@ QoS全称为Quantity of Service，CONNECT、PUBLISH、SUBSCRIBE中都有QoS的�
 
 接下来我们来看一下QoS0和QoS1的机制，并讨论一下什么是QoS降级。
 
-6.2 QoS0
+## 6.2 QoS0
 
 QoS0是最简单的一个QoS等级了，在这个QoS登记下，Sender和Receive之间一次信息的传递流程如下：
 
@@ -35,7 +35,7 @@ QoS0是最简单的一个QoS等级了，在这个QoS登记下，Sender和Receive
 Sender向Receive发送一个包含信息数据的PUBLISH包，然后不管结果如何，丢弃掉已发送的
 PUBLISH包，一条信息的发送完成。
 
-6.3 QoS1
+## 6.3 QoS1
 QoS要保证信息至少达到Sender一次，所以有一个应答的机制，在QoS1登记下的Sender
 和Receive的一次信息的传递流程如下。
 
@@ -48,7 +48,7 @@ QoS要保证信息至少达到Sender一次，所以有一个应答的机制，�
 4.如果Sender在一段时间内没有收到PUBLISH包对应的PUBACK，它将该PUBLISH包的DUP标识设为1（代表是重新发送的PUBLISH包），然后重新发送PUBLISH包。
 重复这个流程，直到收到PUBACK，然后执行第3步。   
 
-6.4 代码实践
+## 6.4 代码实践
 这里我们实现一个发布端和一个订阅端，可以通过命令行参数来指定发布和订阅的QoS，同时
 通过捕获“packetsend”和“packetreceive”事件，将发送和接受到的MQTT数据包的类型打印出来。
 
@@ -109,7 +109,7 @@ QoS要保证信息至少达到Sender一次，所以有一个应答的机制，�
 
 注意：需要先运行 subscribe_with_qos.js 再运行 publish_with_qos.js，确保接收到消息可以打印出来。
 
-6.4.1 发布使用QoS0，订阅使用QoS0
+### 6.4.1 发布使用QoS0，订阅使用QoS0
 
 node publish_with_qos.js --qos=0 输出为：
 
@@ -121,7 +121,7 @@ node susbcribe_with_qos --qos=0 输出为：
      
  结果显而易见，Publisher到Broker，Broker到Subscriber都是用的QoS0.
  
- 6.4.2 发布使用QoS1，订阅使用QoS1
+ ### 6.4.2 发布使用QoS1，订阅使用QoS1
  
  node publish_with_qos.js --qos=1 输出为：
  
@@ -135,7 +135,7 @@ node susbcribe_with_qos --qos=0 输出为：
     
 同样地，结果显而易见，Publisher到Broker，Broker到Subscriber都是用的QoS1.
 
-6.4.3 发布使用QoS0，订阅使用QoS1
+### 6.4.3 发布使用QoS0，订阅使用QoS1
 
  node publish_with_qos.js --qos=0 输出为：
      send：publish
@@ -146,7 +146,7 @@ node susbcribe_with_qos --qos=0 输出为：
 这里就有点奇怪了，很明显Broker到Subscribe这段使用的是QoS0，和Subscribe订阅时指定的QoS不一样。
 原因后面来讲。
 
-6.4.4发布使用QoS1，订阅使用QoS0
+### 6.4.4发布使用QoS1，订阅使用QoS0
 
  node publish_with_qos.js --qos=1 输出为：
  
@@ -170,7 +170,7 @@ QoS1发布信息，但是信息到Subsciber却是QoS.也就是说有可能无法
 理解了实际 Subscriber QoS 的计算方法，你才能很好地设计你系统里面 Publisher 和 Subscriber 使用的 QoS。
 例如，如果你希望 Subscriber 至少收到一次 Publisher 的消息，那么你要确保 Publisher 和 Subscriber 都使用不小于 1 的 QoS 等级。
       
-6.5 小结
+## 6.5 小结
 
 在这一课里面，我们学习了相对比较简单的两种QoS等级，同时学习了实际QoS的计算方法，接下来
 我们学习相对复杂的QoS2以及QoS的最佳实践。
