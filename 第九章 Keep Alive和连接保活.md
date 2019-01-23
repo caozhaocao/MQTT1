@@ -137,4 +137,4 @@ App 端的代码类似如下：
 在 App 被切入后台时采用和 iOS 上一样的机制来接收 MQTT 的消息。
      
 ## 9.4 小结
-到此为止 MQTT 协议及其所有特性，代码参考付强老师的github （https://github.com/sufish/mqtt-nodejs-sample ），接下来我们进入实战课程。
+到此为止 MQTT 协议及其所有特性，代码参考付强老师的github （https://github.com/sufish/mqtt-nodejs-sample ），接下来我们进入实战。
